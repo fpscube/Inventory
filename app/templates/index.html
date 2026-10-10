@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#f4f5f1"><meta name="app-version" content="{{APP_VERSION}}"><title>Inventaire</title>
+  <link rel="stylesheet" href="/static/style.css?v=0.3.3">
+</head>
+<body>
+  <header class="topbar"><a class="brand" href="/">Inventaire<span>.</span></a><button id="add-open" class="primary">＋ Ajouter</button></header>
+  <main>
+    <section class="intro"><p class="eyebrow">Chez vous, tout retrouvé</p><h1>Votre inventaire</h1><p>Objets, outils et petites choses : retrouvez où vous les avez rangés.</p></section>
+    <label class="search"><span aria-hidden="true">⌕</span><input id="search" type="search" placeholder="Rechercher un objet ou un emplacement…" autocomplete="off"></label>
+    <div id="summary" class="summary"></div><section id="items" class="grid" aria-live="polite"></section>
+    <section class="backup"><div><h2>Vos données</h2><p>Créez une sauvegarde ZIP ou restaurez-en une. La restauration remplace tout l’inventaire.</p></div><div class="backup-actions"><button id="export">Exporter ZIP</button><button id="import-open">Restaurer un ZIP</button><input id="import-file" type="file" accept=".zip,application/zip" hidden></div></section>
+  </main>
+  <dialog id="form-dialog"><form id="item-form"><div class="dialog-head"><div><p class="eyebrow">Nouvel objet</p><h2 id="form-title">Ajouter à l’inventaire</h2></div><button type="button" class="icon-button" data-close aria-label="Fermer">×</button></div>
+    <input id="item-id" type="hidden"><label class="field"><span>Objet</span><div class="field-row"><textarea id="description" rows="2" required placeholder="Ex. perceuse sans fil, embouts dans la boîte…"></textarea><button class="mic" type="button" data-target="description" title="Dicter">🎙</button></div></label>
+    <label class="field"><span>Emplacement</span><div class="field-row"><textarea id="location" rows="2" required placeholder="Ex. garage, étagère du haut…"></textarea><button class="mic" type="button" data-target="location" title="Dicter">🎙</button></div></label>
+    <div class="field"><span>Photos <small id="photo-hint">— au moins une requise, 5 maximum</small></span><button id="photo-add" type="button">📷 Prendre une photo</button><small class="helper">Ajoutez les photos une par une. Vous pouvez en prendre jusqu’à cinq.</small></div><div id="preview" class="preview"></div>
+    <p id="form-error" class="error" role="alert"></p><div class="form-actions"><button type="button" data-close>Annuler</button><button class="primary" type="submit" id="save">Enregistrer</button></div>
+  </form></dialog>
+  <dialog id="camera-dialog"><div class="camera-shell"><div class="dialog-head"><div><p class="eyebrow">Nouvelle photo</p><h2>Photographier l’objet</h2></div><button type="button" class="icon-button" id="camera-close" aria-label="Fermer">×</button></div><p id="camera-error" class="error" role="alert"></p><video id="camera-video" autoplay playsinline muted></video><div class="form-actions"><button type="button" id="camera-capture" class="primary">Capturer</button></div><a id="camera-https-link" hidden>Ouvrir l’application en HTTPS</a><a id="camera-cert-link" hidden>Télécharger le certificat du téléphone</a></div></dialog>
+  <dialog id="detail-dialog"><div class="dialog-head"><div><p class="eyebrow">Détail</p><h2>Objet</h2></div><button type="button" class="icon-button" data-close aria-label="Fermer">×</button></div><div id="detail-content"></div><div class="form-actions"><button id="delete-item" class="danger">Supprimer</button><button id="edit-item" class="primary">Modifier</button></div></dialog>
+  <dialog id="photo-lightbox" aria-label="Agrandissement de la photo"><button id="lightbox-close" class="lightbox-close" aria-label="Fermer">×</button><button id="lightbox-prev" class="lightbox-nav" aria-label="Photo précédente">‹</button><img id="lightbox-image" alt="Photo agrandie"><button id="lightbox-next" class="lightbox-nav" aria-label="Photo suivante">›</button><div id="lightbox-count" class="lightbox-count"></div></dialog>
+  <footer class="app-footer"><span>Inventaire</span><span>Version {{APP_VERSION}}</span></footer>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <script src="/static/app.js?v=0.3.3" defer></script>
+</body></html>
